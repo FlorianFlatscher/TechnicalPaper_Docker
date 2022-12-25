@@ -30,13 +30,13 @@ include::chapters/installation.adoc[]
 include::chapters/first-steps.adoc[]
 
 <<<
-include::chapters/hands-on.adoc[]
-
-<<<
-include::chapters/hands-on.adoc[]
+include::chapters/use-case.adoc[]
 
 <<<
 include::chapters/discussion.adoc[]
+
+<<<
+include::chapters/conclusion.adoc[]
 
 <<<
 include::chapters/material.adoc[]
