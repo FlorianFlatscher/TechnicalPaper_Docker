@@ -1,0 +1,116 @@
+brand:
+  text_color: #333333
+  primary_color: #23B7EA
+  link_color: $brand_primary_color
+  literal_color: #b12146
+font:
+  catalog:
+    # Noto Serif supports Latin, Latin-1 Supplement, Latin Extended-A, Greek, Cyrillic, Vietnamese & an assortment of symbols
+    Noto Serif:
+      normal: notoserif-regular.ttf
+      bold: notoserif-bold.ttf
+      italic: notoserif-italic.ttf
+      bold_italic: notoserif-bold-italic.ttf
+    Knack:
+      normal: knack-codeblock.ttf
+      bold: knack-codeblock-bold.ttf
+      italic: knack-codeblock-italic.ttf
+      bold_italic: knack-codeblock-bold-italic.ttf
+    M+ 1p:
+      normal: mplus-1p-regular.ttf
+  fallbacks:
+    - M+ 1p
+base:
+  align: justify
+  font_family: Noto Serif
+  font_color: $brand_text_color
+  line_height_length: 20
+  line_height: $base_line_height_length / $base_font_size
+title_page:
+  align: left
+  logo:
+    align: right
+    image: image:img.png[pdfwidth=30%]
+    top: 0%
+  subtitle:
+    font_color: $brand_link_color
+  authors:
+    margin_top: 35mm
+  revision:
+    delimiter: ' - '
+    font_size: 10
+toc:
+  align: left
+  background_image: image:Page.svg[pdfwidth=100%]
+page:
+  layout: portrait
+  margin: [25mm, 20mm, 15mm, 20mm]
+  size: A4
+vertical_rhythm: $base_line_height_length
+prose:
+  text_transform: justify
+block:
+  margin_top: 6
+  margin_bottom: 6
+heading:
+  font_color: $brand_primary_color
+  font_size: 18
+  font_style: bold
+  line_height: 1.2
+  margin_bottom: $vertical_rhythm
+  image_vertical_align: top
+link:
+  font_color: $brand_link_color
+outline_list:
+  indent: $base_font_size * 1.5
+header:
+  height: 0.75in
+  line_height: 1
+  recto_content:
+    left: '{document-title}'
+    right: image:spengergasse-logo.png[pdfwidth=25%]
+  verso_content:
+    right: '{document-title}'
+    left: image:spengergasse-logo.png[pdfwidth=25%]
+footer:
+  height: 0.75in
+  line_height: 1
+  recto_content:
+    left: ''
+    right: '{chapter-title} | *{page-number} / {page-count}*'
+  verso_content:
+    left: '*{page-number} / {page-count}* | {chapter-title}'
+    right: ''
+image:
+  align: center
+table:
+  caption_side: bottom
+caption:
+  side: left
+  side: bottom
+  font_size: 10
+literal:
+  font_color: $brand_literal_color
+  font_family: Knack
+conum:
+  font_family: Knack
+  font_color: $brand_literal_color
+  font_size: $base_font_size
+  line_height: 4 / 3
+code:
+  font_family: Knack
+admonition:
+  font-size: 9
+  label:
+    text-align: left
+  icon:
+    note:
+      size: 15
+    tip:
+      size: 15
+    warning:
+      size: 15
+    important:
+      size: 15
+    caution:
+      size: 15

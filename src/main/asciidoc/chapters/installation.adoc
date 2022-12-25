@@ -1,0 +1,11 @@
+ifndef::imagesdir[:imagesdir: ../../images/]
+
+== Installation
+
+Docker can be easily installed through the Docker Desktop installation with detailed instructions can be found https://docs.docker.com/get-docker/[here].
+
+Docker Desktop requires an account at https://hub.docker.com/.
+
+TIP: The installation can be verified using the command `docker run hello-world`
+
+

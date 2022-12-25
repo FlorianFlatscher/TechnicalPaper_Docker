@@ -1,0 +1,67 @@
+= Technical Paper : Docker
+Florian Flatscher <fla19488@spengergasse.at>
+v1.0, 25.12.2022
+
+:doctype: book
+
+
+:toc:
+:toc-title: Table of content
+:toclevels: 3
+:blankline: pass:[ +]
+
+:sectlinks:
+:imagesdir: ../images/
+
+
+
+[abstract]
+== Abstract
+
+<<<
+:sectnums:
+
+include::chapters/overview.adoc[]
+
+<<<
+include::chapters/installation.adoc[]
+
+<<<
+include::chapters/first-steps.adoc[]
+
+<<<
+include::chapters/hands-on.adoc[]
+
+<<<
+include::chapters/hands-on.adoc[]
+
+<<<
+include::chapters/discussion.adoc[]
+
+<<<
+include::chapters/material.adoc[]
+
+<<<
+:sectnums!:
+
+[glossary]
+== Glossary
+<<<
+
+[bibliography]
+== References
+
+* [[d]] Docker: https://docker.com[] [25.12.2022]
+* [[dd]] Docker docs: https://docs.docker.com/[] [25.12.2022]
+* [[dh]] Docker hub: https://hub.docker.com/[] [25.12.2022]
+* [[m1]] Medium, "Docker — Beginner’s Guide": https://medium.com/codingthesmartway-com-blog/docker-beginners-guide-part-1-images-containers-6f3507fffc98 [25.12.2022]
+* [[sl]] Simplilearn, "What Is and What Are the Benefits of Docker Container?": https://www.simplilearn.com/tutorials/docker-tutorial/what-is-docker-container [25.12.2022]
+
+<<<
+[index]
+== Index
+
+<<<
+[appendix]
+== Appendix
+<<<

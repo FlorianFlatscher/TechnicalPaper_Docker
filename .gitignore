@@ -1,0 +1,11 @@
+.idea/
+*.iws
+*.iml
+*.ipr
+
+target/
+pom.xml.*
+!/.mvn/wrapper/maven-wrapper.jar
+
+src/main/images/generated/
+src/main/asciidoc/.asciidoctor/

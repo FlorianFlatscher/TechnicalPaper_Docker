@@ -1,0 +1,107 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+
+    <groupId>at.spengergasse.hif</groupId>
+    <artifactId>asciidoctor-diplomathesis</artifactId>
+    <version>1.0-SNAPSHOT</version>
+    <packaging>pom</packaging>
+
+    <name>asciidoctor-diplomathesis</name>
+
+    <properties>
+        <java.version>19</java.version>
+        <java.compiler>${java.version}</java.compiler>
+        <maven.release>${java.version}</maven.release>
+        <maven.compiler.source>${java.version}</maven.compiler.source>
+        <maven.compiler.target>${java.version}</maven.compiler.target>
+
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+
+        <!--
+        please do not update to latest version of the asciidoctor maven plugin
+        as it does currently not properly support page breaks
+        <asciidoctor-maven-plugin.version>2.1.0</asciidoctor-maven-plugin.version>
+        -->
+
+        <asciidoctor-maven-plugin.version>1.6.0</asciidoctor-maven-plugin.version>
+        <asciidoctorj.version>2.4.2</asciidoctorj.version>
+        <asciidoctorj-pdf.version>1.5.3</asciidoctorj-pdf.version>
+        <asciidoctorj-diagram.version>2.0.5</asciidoctorj-diagram.version>
+        <jruby.version>9.2.13.0</jruby.version>
+
+        <asciidoctorOutDirectory>${project.build.directory}/asciidoc</asciidoctorOutDirectory>
+    </properties>
+
+    <build>
+        <defaultGoal>clean process-resources</defaultGoal>
+        <plugins>
+            <plugin>
+                <groupId>org.asciidoctor</groupId>
+                <artifactId>asciidoctor-maven-plugin</artifactId>
+                <version>${asciidoctor-maven-plugin.version}</version>
+                <dependencies>
+                    <dependency>
+                        <groupId>org.asciidoctor</groupId>
+                        <artifactId>asciidoctorj-pdf</artifactId>
+                        <version>${asciidoctorj-pdf.version}</version>
+                    </dependency>
+                    <dependency>
+                        <groupId>org.asciidoctor</groupId>
+                        <artifactId>asciidoctorj-diagram</artifactId>
+                        <version>${asciidoctorj-diagram.version}</version>
+                    </dependency>
+                </dependencies>
+                <configuration>
+                    <sourceDirectory>src/main/asciidoc</sourceDirectory>
+                    <sourceDocumentName>paper.adoc</sourceDocumentName>
+                    <requires>
+                        <require>asciidoctor-diagram</require>
+                    </requires>
+                </configuration>
+                <executions>
+                    <!--
+                    <execution>
+                        <id>generate-html-doc</id>
+                        <phase>generate-resources</phase>
+                        <goals>
+                            <goal>process-asciidoc</goal>
+                        </goals>
+                        <configuration>
+                            <backend>html</backend>
+                            <doctype>book</doctype>
+                            <outputDirectory>${asciidoctorOutDirectory}/html</outputDirectory>
+                        </configuration>
+                    </execution>
+                    -->
+                    <execution>
+                        <id>generate-pdf-doc</id>
+                        <phase>generate-resources</phase>
+                        <goals>
+                            <goal>process-asciidoc</goal>
+                        </goals>
+                        <configuration>
+                            <backend>pdf</backend>
+                            <outputDirectory>${asciidoctorOutDirectory}/pdf</outputDirectory>
+                            <attributes>
+                                <icons>font</icons>
+                                <pagenums/>
+                                <toc/>
+                                <idprefix/>
+                                <idseparator>-</idseparator>
+                                <imagesdir>../images</imagesdir>
+                                <imagesoutdir>../images</imagesoutdir>
+                                <pdf-fontsdir>${project.basedir}/src/main/fonts</pdf-fontsdir>
+                                <pdf-stylesdir>${project.basedir}/src/main/themes/pdf</pdf-stylesdir>
+                                <pdf-style>spengergasse</pdf-style>
+                                <source-highlighter>coderay</source-highlighter>
+                            </attributes>
+                        </configuration>
+                    </execution>
+                </executions>
+            </plugin>
+        </plugins>
+    </build>
+</project>

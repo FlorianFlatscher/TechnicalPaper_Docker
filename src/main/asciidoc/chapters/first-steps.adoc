@@ -1,0 +1,139 @@
+ifndef::imagesdir[:imagesdir: ../../images/]
+
+== First Steps
+
+[.lead]
+The aim of this chapter is to give a general understanding on working with docker by guiding through the process of installing PostgresSQL using docker.
+
+=== Pulling an image
+
+The image for PostgreSQL can be found on https://hub.docker.com/_/postgres[Docker Hub] and is called `postgres`.
+
+image::postgres.png[title="Postgres on Docker Hub <<dh>>"]
+
+It can be downloaded with the command:
+
+[source,shell]
+----
+docker pull postgres
+----
+
+CAUTION: Anyone can distribute software on Docker Hub. Notice the `DOCKER OFFICIAL IMAGE` badge.
+
+After pulling it can be found in the docker engines image registry by running:
+
+[source,shell]
+----
+docker image ls
+----
+
+TIP: Run `docker --help` to list all possible command. Notice the uniform structure of management commands: `docker [object] [operation]`
+
+
+=== Running an image
+
+An image can be run with the following command:
+[source,shell]
+----
+docker run \
+  --name some-postgres \ # <1>
+  -e POSTGRES_PASSWORD=mysecretpassword \ # <2>
+  -d \ # <3>
+  postgres # <4>
+----
+<1> Human-readable name
+<2> The environment variable for the postgres password is set as requested in the reference on https://hub.docker.com/_/postgres[Docker Hub]
+<3> Detatched -> postgress should should run in the background
+<4> Name of the image pulled earlier
+
+====
+Note that Running an image is nothing else than creating a container from an image and starting it afterwards.
+`docker run` is a shortcut for executing the following commands:
+
+[source,shell]
+----
+docker container create --name some-postgres -e POSTGRES_PASSWORD=mysecretpassword postgres
+----
+
+[source,shell]
+----
+docker container start some-postgres
+----
+====
+
+=== Inspecting a container
+
+List all containers:
+[source,shell]
+----
+docker ps
+----
+image::terminal_1.png[]
+
+List the logs of the container:
+[source,shell]
+----
+docker logs bf03c
+----
+NOTE: *bf03c* indicates the container id *bf03c0ca6cc8*
+
+=== Connecting to a container
+
+The container is now running in the docker network with its own IP. In order to properly connect to it we have to add a port mapping to the container. A port mapping is a direct wire from a containers port to the host machines port. In this example we want to have a port mapping of _5432:5432_ with the syntax _PORT_HOST:PORT_CONTAINER_, which is essentially forwarding the port 5432.
+
+However we one only add port mappings when creating a new container. Therefore following steps have to be performed:
+
+
+1. https://docs.docker.com/engine/reference/commandline/stop/[stop] running container
++
+[source,shell]
+----
+docker stop some-postgres
+----
+
+2. https://docs.docker.com/engine/reference/commandline/commit/[commit] the container
++
+[source,shell]
+----
+docker commit some-postgres some-postgres
+----
+
+3. re-run from the commited image
++
+[source,shell]
+----
+docker run -p 5432:5432 -d some-postgres
+----
+
+The output of `docker ps` then gives the newly configured port mapping:
+
+image::terminal_2.png[]
+
+*How does it work?*:: `docker commit` commits the container in its current state as an image. This image can then be run again in a new container with a port mapping. This juggling of big software truly shows the power of docker.
+
+The Database is now ready to operate. Client software can now connect to the database and work with it.
+
+Connecting to the database with IntelliJ IDEA:
+
+image::intellij_1.png[pdfwidth=50%]
+
+=== Stopping a container
+
+[source, shell]
+----
+docker rm -f some-postgres
+----
+
+NOTE: All data inside the database will be lost. If data should be kept longer than a containers lifecycle so called *Volumes* are required. Thes will be discussed in a later section.
+
+=== Result
+
+The advantages of installing PostgresSQL through docker are:
+
+Ease of moving and maintaining the database:: Versions of PostgreSQL can be easily switched by pulling a new versions image. Old versions can be removed cleanly.
+
+Unified installation:: Using Docker the installation is the same on all operating systems. It doesn't require any software dependencies on the host.
+
+Security:: Software should not escape its container.
+
+In fact all images on Docker Hub can be installed and started just like the walkthrough did with PostgreSQL.
