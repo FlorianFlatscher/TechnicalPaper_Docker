@@ -1,0 +1,72 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<svg xmlns='http://www.w3.org/2000/svg' xmlns:xlink='http://www.w3.org/1999/xlink' contentScriptType='application/ecmascript' contentStyleType='text/css' height='159px' preserveAspectRatio='none' style='width:315px;height:159px;' version='1.1' viewBox='0 0 315 159' width='315px' zoomAndPan='magnify'>
+  <defs>
+    <filter height='300%' id='ffua3x1fcp1p1' width='300%' x='-1' y='-1'>
+      <feGaussianBlur result='blurOut' stdDeviation='2.0'/>
+      <feColorMatrix in='blurOut' result='blurOut2' type='matrix' values='0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 .4 0'/>
+      <feOffset dx='4.0' dy='4.0' in='blurOut2' result='blurOut3'/>
+      <feBlend in='SourceGraphic' in2='blurOut3' mode='normal'/>
+    </filter>
+  </defs>
+  <g>
+    <text fill='#000000' font-family='sans-serif' font-size='18' lengthAdjust='spacingAndGlyphs' textLength='268' x='35' y='16.708'>
+      Architecture of sample project
+    </text>
+    <!--MD5=[d64883541e3d62e3241c4d12decf100d]
+cluster Application-->
+    <rect fill='#FFFFFF' filter='url(#ffua3x1fcp1p1)' height='104' style='stroke: #000000; stroke-width: 1.5;' width='282' x='22' y='44.9531'/>
+    <path d='M119,45.9531 L119,54.25 L109,64.25 L22,64.25 ' fill='none' style='stroke: #000000; stroke-width: 1.5;'/>
+    <text fill='#000000' font-family='sans-serif' font-size='14' font-weight='bold' lengthAdjust='spacingAndGlyphs' textLength='87' x='25' y='58.9482'>
+      Application
+    </text>
+    <!--MD5=[f9ba5bf973e7832d2ce5ed59077b93f7]
+entity DB-->
+    <rect fill='#FEFECE' filter='url(#ffua3x1fcp1p1)' height='52.5938' style='stroke: #A80036; stroke-width: 1.5;' width='127' x='160.5' y='79.9531'/>
+    <rect fill='#FEFECE' height='5' style='stroke: #A80036; stroke-width: 1.5;' width='10' x='155.5' y='84.9531'/>
+    <rect fill='#FEFECE' height='5' style='stroke: #A80036; stroke-width: 1.5;' width='10' x='155.5' y='122.5469'/>
+    <text fill='#000000' font-family='sans-serif' font-size='14' font-style='italic' lengthAdjust='spacingAndGlyphs' textLength='107' x='170.5' y='102.9482'>
+      «PostgresSQL»
+    </text>
+    <text fill='#000000' font-family='sans-serif' font-size='14' lengthAdjust='spacingAndGlyphs' textLength='66' x='191' y='119.2451'>
+      Database
+    </text>
+    <!--MD5=[645d8587175d8f7ad110cd370775931d]
+entity API-->
+    <rect fill='#FEFECE' filter='url(#ffua3x1fcp1p1)' height='52.5938' style='stroke: #A80036; stroke-width: 1.5;' width='87' x='38.5' y='79.9531'/>
+    <rect fill='#FEFECE' height='5' style='stroke: #A80036; stroke-width: 1.5;' width='10' x='33.5' y='84.9531'/>
+    <rect fill='#FEFECE' height='5' style='stroke: #A80036; stroke-width: 1.5;' width='10' x='33.5' y='122.5469'/>
+    <text fill='#000000' font-family='sans-serif' font-size='14' font-style='italic' lengthAdjust='spacingAndGlyphs' textLength='67' x='48.5' y='102.9482'>
+      «NodeJS»
+    </text>
+    <text fill='#000000' font-family='sans-serif' font-size='14' lengthAdjust='spacingAndGlyphs' textLength='21' x='71.5' y='119.2451'>
+      API
+    </text>
+    <!--MD5=[b874c2a0ce20abc088b74c0c7c933d7a]
+link API to DB-->
+    <path d='M125.54,106.4531 C135.37,106.4531 145.19,106.4531 155.02,106.4531 ' fill='none' id='API-&gt;DB' style='stroke: #A80036; stroke-width: 1.0;'/>
+    <polygon fill='#A80036' points='160.16,106.4531,151.16,102.4531,155.16,106.4531,151.16,110.4531,160.16,106.4531' style='stroke: #A80036; stroke-width: 1.0;'/>
+    <!--MD5=[c2d6b25167e9f492f1ede0483d038fa7]
+@startuml
+title Architecture of sample project
+
+frame Application{
+    Component Database as DB <<PostgresSQL>>
+
+    Component API as API <<NodeJS>>
+}
+
+API -> DB
+@enduml
+
+PlantUML version 1.2020.06(Sun Apr 05 14:38:32 CEST 2020)
+(APACHE source distribution)
+Java Runtime: OpenJDK Runtime Environment
+JVM: OpenJDK 64-Bit Server VM
+Java Version: 19+36-2238
+Operating System: Linux
+Default Encoding: UTF-8
+Language: en
+Country: US
+-->
+  </g>
+</svg>

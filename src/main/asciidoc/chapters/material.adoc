@@ -1,0 +1,17 @@
+
+
+== Material
+
+Docker is a big ecosystem with many concepts to explore. Further read in the following topics is especially recommended for software development with docker:
+
+Image Building - best practices (caching, etc.)::
+https://docs.docker.com/get-started/09_image_best/
+
+Developing with Docker - best practises::
+https://docs.docker.com/develop/dev-best-practices/
+
+Container Networking::
+https://docs.docker.com/get-started/07_multi_container/
+
+Further Tutorials, Books, CLI cheat sheets::
+https://docs.docker.com/get-started/resources/

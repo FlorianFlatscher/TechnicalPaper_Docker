@@ -12,11 +12,16 @@ v1.0, 25.12.2022
 
 :sectlinks:
 :imagesdir: ../images/
+:codedir: ../../../../sample
+
 
 
 
 [abstract]
 == Abstract
+
+This paper is a introduction to Docker. It gives an overview over the most important technical terms and provides a practical guideline on how to use docker in the software development area. Moreover, it holds material for further details to guide through the journey of learning Docker.
+
 
 <<<
 :sectnums:
@@ -30,38 +35,21 @@ include::chapters/installation.adoc[]
 include::chapters/first-steps.adoc[]
 
 <<<
-include::chapters/use-case.adoc[]
-
-<<<
-include::chapters/discussion.adoc[]
+include::chapters/by-example.adoc[]
 
 <<<
 include::chapters/conclusion.adoc[]
 
-<<<
 include::chapters/material.adoc[]
 
 <<<
 :sectnums!:
 
-[glossary]
-== Glossary
-<<<
-
 [bibliography]
 == References
 
-* [[d]] Docker: https://docker.com[] [25.12.2022]
-* [[dd]] Docker docs: https://docs.docker.com/[] [25.12.2022]
-* [[dh]] Docker hub: https://hub.docker.com/[] [25.12.2022]
+* [[d]] [d] Docker: https://docker.com[] [25.12.2022]
+* [[dd]] [dd] Docker docs: https://docs.docker.com/[] [25.12.2022]
+* [[dh]] [dh] Docker hub: https://hub.docker.com/[] [25.12.2022]
 * [[m1]] Medium, "Docker — Beginner’s Guide": https://medium.com/codingthesmartway-com-blog/docker-beginners-guide-part-1-images-containers-6f3507fffc98 [25.12.2022]
 * [[sl]] Simplilearn, "What Is and What Are the Benefits of Docker Container?": https://www.simplilearn.com/tutorials/docker-tutorial/what-is-docker-container [25.12.2022]
-
-<<<
-[index]
-== Index
-
-<<<
-[appendix]
-== Appendix
-<<<

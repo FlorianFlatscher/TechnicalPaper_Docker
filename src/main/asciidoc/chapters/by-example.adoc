@@ -1,0 +1,162 @@
+ifndef::imagesdir[:imagesdir: ../../images/]
+ifndef::codedir[:codedir: ../../../../sample]
+
+== Docker by Example
+
+[.lead]
+The aim of this chapter is to outline practical use of docker in software development by working through a potential project situation.
+
+=== Situation
+
+The aim of the software project is developing an api using NodeJS. The application should be deployed to an ubuntu server and store data in a PostgresSQL database. It is being developed by multiple developers running different systems. The code is shared on https://github.com/FlorianFlatscher/TechnicalPaper_Docker/tree/master/sample[GitHub]
+
+[plantuml, target=diagram-classes, format=svg, align=center]
+....
+title Architecture of sample project
+
+frame Application{
+    Component Database as DB <<PostgresSQL>>
+
+    Component API as API <<NodeJS>>
+}
+
+API -> DB
+....
+
+=== Why Docker?
+
+Developing a single piece of software can be straight forward. The developer can start a local database before starting to code. But what happens if the application requires a second database? A message broker? Linux specific applications? Furthermore if there was a second project requiring a different version of PostgresSQL, how does the developer switch? Managing the local setup can be challenging as the projects scales. And the best part is, that working on a different device requires the developer to start over again.
+
+Docker in combination with Docker-Compose is the perfect solution for all those challenges. The following sections will show how to use those tools effectifly.
+
+=== Source Code
+
+The source code for this sample NodeJS project can be found on https://github.com/FlorianFlatscher/TechnicalPaper_Docker/tree/master/sample[GitHub]. It is a plain Node project with a `index.js` file, that connects to a locals PostgreSQL Database using the Node module PG. Connection details are configured in the `.env` file.
+
+[source,javascript]
+.index.js
+----
+include::{codedir}/index.js[]
+----
+
+[source]
+..env
+----
+include::{codedir}/.env[]
+----
+
+=== Docker-Compose
+The first step is to automatically spin up a local PostgreSQL so that developers don't have to care about local setup anymore. Docker-Compose is a Plugin for Docker that can be installed https://docs.docker.com/compose/install/linux/[here].
+
+NOTE: Docker Compose can also be installed as standalone binary. It is then called with `docker-compose` instead of `docker comospose`
+
+Following `docker-compose.yml` is now to be placed in the root of the project:
+
+[source, yaml]
+.docker-compose.yml
+----
+version: '3.8'
+services:
+  db: # <1>
+    image: postgres # <2>
+    restart: always # <3>
+    environment:
+      POSTGRES_PASSWORD: "mysecretpassword"
+      POSTGRES_DB: "sample"
+    ports:
+      - '5432:5432'
+----
+<1> The name of the Service -> Will be included in the containers name
+<2> The image will be automatically pulled if not installed
+<3> Restart the container if there are any errors or if it is interrupted
+
+The following command executed in the current directory will now setup a PostgreSQL Container:
+[source,shell]
+docker compose up -d
+
+Docker Compose takes care of downloading and configuring all required images. All configuration that was done in the last chapter can now conveniently be configured in a single file.
+
+The API can now connect to the local database:
+
+image:terminal_3.png[]
+
+After development the container be stopped with:
+
+[source,shell]
+docker compose down
+
+TIP: Logs of the database can be found with `docker compose logs db`
+
+=== Docker Volumes
+
+After removing the container all data is lost. If the data should be held beyond the containers lifecycle a volume is needed. A volume is a folder or file in the container that is stored in the filesystem of the host. It so to say links the host's and the container's filesystems.
+
+Configuring the volume using Docker Compose:
+
+[source,yaml]
+.docker-compose.yml
+----
+include::{codedir}/docker-compose.yml[]
+----
+
+When restarting the db service with `docker compose up -d --build` the data of the database will be persisted on the hosts file system in `.docker/db/data`.
+
+TIP: Put `.docker` in your .gitignore
+
+=== Production
+
+The production build should spin up the PostgreSQL database but also build the code for the API. Therefore, the Node project must be *dockerized*. This is done by placing a `Dockerfile` in the root of the project. This can be seen as a step-by-step guide for Docker on how to build and execute the project.
+
+[source,docker]
+.Dockerfile
+----
+
+FROM node:16 # <1>
+
+# Create app directory
+WORKDIR /usr/src/app
+
+# Install app dependencies
+# A wildcard is used to ensure both package.json AND package-lock.json are copied
+# where available (npm@5+)
+COPY package*.json ./ # <2>
+
+RUN npm install
+RUN npm ci --only=production
+
+# Bundle app source
+COPY . . # <3>
+
+EXPOSE 8080 # <4>
+CMD [ "node", "index.js" ] # <5>
+----
+<1> The image node:16 is used as the starting point
+<2> The copy command copies the left side (files in host filesystem) inside the container. In this cas in the working directory that was set above
+<3> Only copy the entire source code after installing the node modules, so that Docker can cache it. This will speed up build time. It will only run `npm install` if package.json changes.
+<4> Makes the container reachable on port 8080
+<5> Instruct Docker on how to run the application when spinning up the container
+
+Furthermore a .dockerignore is required to ignore files that should not land in the container:
+
+[source]
+..dockerignore
+----
+include::{codedir}/.dockerignore[]
+----
+
+
+The next step is placing a `docker-compose.yml` in the `prod` folder. The api should now not connect to a local database, it should connect to the `db` service. This is achieved by configuring `db` as the PGHOST using environment variables.
+
+[source,yaml]
+.prod/docker-compose.yml
+----
+include::{codedir}/prod/docker-compose.yml[]
+----
+
+Running the stack with `docker compose up -d --build` in the `prod` folder start up the application. The API would then be reachable on port 8080. The database is not reachable by the outside
+
+NOTE: Note the `--build` flag that has to be used if the source code changes so that the containers get rebuilt
+
+The expected result can be verified by looking at the logs:
+
+image::terminal_4.png[]
