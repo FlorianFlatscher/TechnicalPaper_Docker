@@ -4,9 +4,9 @@ ifndef::imagesdir[:imagesdir: ../../images/]
 [.lead]
 The aim of this chapter is to give an overview of the key concepts of docker.
 
-Docker <<d>> is a tool for software developers in all areas that promises simplification and acceleration of the development workflow, while giving the creators freedom and suitable features to shape it for all kinds of software projects. Introduced in 2013, docker set an industry standard for containers, marked by over 300 billion pulled containers. While docker started as a tool for working with containers, it has grown to a whole development ecosystem with cloud infrastructure, community forums or business plans. As this document serves as technical paper, the following sections will focus on software development with docker containers.
+Docker <<d>> is a tool for software developers in all areas that promises simplification and acceleration of the development workflow, while giving the creators freedom and suitable features to use it for all kinds of software projects. Introduced in 2013, docker set an industry standard for containers, marked by over 300 billion pulled containers. While docker started as a tool for working with containers, it has grown to a whole development ecosystem with cloud infrastructure, community forums or business plans. As this document serves as a technical paper, the following sections will focus on software development with docker containers.
 
-Following concepts are essential for running an application with docker:
+The following concepts are essential for running an application with docker:
 
 Docker Images:: A template with instructions for creating a Docker container.
 
@@ -30,13 +30,13 @@ Images can be built on other images. Usually on image holds a single piece of so
 
 === Docker Containers
 
-A container is the environment some application is running in. It is so to say the runnable instance of an image. It can be started and stopped similar to virtual machines, however it has different technical concept. While virtual machines simulate an entire system and therefore only share hardware, docker containers run directly on the host operating system and can therefore also share userland. This means that dockerized applications are much more lightweight than applications running on a virtual machine.
+A container is the environment some application is running in. It is so to say, the runnable instance of an image. It can be started and stopped similar to virtual machines, however it has different technical concept. While virtual machines simulate an entire system and therefore only share hardware, docker containers run directly on the host operating system and can therefore also share userland. This means that dockerized applications are much more lightweight than applications running on a virtual machine.
 
 :sourcedir: ../
 
 image::container_vm.png[title="Containers vs Virtual Machines <<d>>"]
 
-Container technology is so beneficial, as it is independent on the device's setup, while not having to boot up a guest operating system.
+Container technology is so beneficial, as it is independent of the device's setup, while not having to boot up a guest operating system.
 
 === Docker Engine
 
@@ -46,6 +46,6 @@ image::engine.png[title="Docker Engine <<d>>", pdfwidth=50%]
 
 === Docker Compose
 
-When working with Docker containers one will quickly notice the tedious task of building configuring and running containers over and over again. Docker Compose improves efficiency by orchestrating multiple docker containers, which are all specified in _docker-compose.yml_. This is especially handy when working with microservice applications.
+When working with Docker containers one will quickly notice the tedious task of building, configuring and running containers over and over again. Docker Compose improves efficiency by orchestrating multiple docker containers, which are all specified in _docker-compose.yml_. This is especially handy when working with microservice applications.
 
 

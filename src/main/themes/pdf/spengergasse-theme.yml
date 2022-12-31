@@ -16,6 +16,8 @@ font:
       bold: knack-codeblock-bold.ttf
       italic: knack-codeblock-italic.ttf
       bold_italic: knack-codeblock-bold-italic.ttf
+    JetBrainsMono:
+      normal: JetBrainsMono-Regular.ttf
     M+ 1p:
       normal: mplus-1p-regular.ttf
   fallbacks:
@@ -91,14 +93,14 @@ caption:
   font_size: 10
 literal:
   font_color: $brand_literal_color
-  font_family: Knack
+  font_family: JetBrainsMono
 conum:
-  font_family: Knack
+  font_family: JetBrainsMono
   font_color: $brand_literal_color
   font_size: $base_font_size
   line_height: 4 / 3
 code:
-  font_family: Knack
+  font_family: JetBrainsMono
 admonition:
   font-size: 9
   label:

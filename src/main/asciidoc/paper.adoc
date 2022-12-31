@@ -20,7 +20,7 @@ v1.0, 25.12.2022
 [abstract]
 == Abstract
 
-This paper is a introduction to Docker. It gives an overview over the most important technical terms and provides a practical guideline on how to use docker in the software development area. Moreover, it holds material for further details to guide through the journey of learning Docker.
+This paper is an introduction to Docker. It gives an overview over the most important technical terms and provides a practical guideline on how to use docker in the software development area. Moreover, it holds material for further details to guide through the journey of learning Docker.
 
 
 <<<

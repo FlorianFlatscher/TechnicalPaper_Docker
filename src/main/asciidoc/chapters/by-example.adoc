@@ -153,7 +153,7 @@ The next step is placing a `docker-compose.yml` in the `prod` folder. The api sh
 include::{codedir}/prod/docker-compose.yml[]
 ----
 
-Running the stack with `docker compose up -d --build` in the `prod` folder start up the application. The API would then be reachable on port 8080. The database is not reachable by the outside
+Running the stack with `docker compose up -d --build` in the `prod` folder starts up the application. The API would then be reachable on port 8080. The database is not reachable from outside.
 
 NOTE: Note the `--build` flag that has to be used if the source code changes so that the containers get rebuilt
 

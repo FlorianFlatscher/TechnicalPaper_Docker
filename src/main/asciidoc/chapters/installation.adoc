@@ -2,7 +2,9 @@ ifndef::imagesdir[:imagesdir: ../../images/]
 
 == Installation
 
-Docker can be easily installed through the Docker Desktop installation with detailed instructions can be found https://docs.docker.com/get-docker/[here].
+Docker can be easily installed through the Docker Desktop installation. Detailed instructions can be found https://docs.docker.com/get-docker/[here].
+
+Windows users have to enable the WSL subsystem for Linux. This is because docker requires specific features of the Linux Kernel for its operation.
 
 Docker Desktop requires an account at https://hub.docker.com/.
 

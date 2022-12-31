@@ -136,4 +136,4 @@ Unified installation:: Using Docker the installation is the same on all operatin
 
 Security:: Software should not escape its container.
 
-In fact all images on Docker Hub can be installed and started just like the walkthrough did with PostgreSQL.
+In fact, all images on Docker Hub can be installed and started just like the walkthrough did with PostgreSQL. Once mastered, installation of software gets as easy as snapping fingers.

@@ -1,4 +1,4 @@
 
 == Conclusion
 
-As seen in the examples of the past two chapters Docker tackles multiple Challenges at once with the Container philosophy. However, it needs time for configuration that can be seen as tedious for new developers. Every software project can benefit from a Docker expert in the team for sure.
+As seen in the examples of the past two chapters Docker tackles multiple challenges at once with its Container philosophy. However, it needs time for configuration that can be seen as tedious for new developers. Every software project can benefit from a Docker expert in the team for sure.
